@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Rock - Paper - Scissors</title>
+		<meta charset="UTF-8" />
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+	</head>
+	<body class="w-full h-full m-h-[100vh] bg-slate-800 text-gray-50 p-3 md:p-6">
+		<main class="max-w-screen-lg mx-auto w-full flex flex-col gap-3 md:gap-6">
+			<header>
+				<h1 class="text-3xl font-semibold">Rock, Paper, Scissors.</h1>
+			</header>
+			<div id="game" class="w-full flex flex-col border border-gray-700 rounded-md overflow-hidden">
+				<p data-game-loader class="text-center w-full" role="alert" aria-busy="true" aria-hidden="false">Loading game...</p>
+				<div data-game-stage hidden aria-hidden="true" class="flex flex-col gap-3 md:gap-6">
+					<div data-game-options class="w-full flex flex-row flex-wrap gap-3 md:gap-6 col-span-2 border-b border-slate-700 p-3 md:p-6 bg-slate-900">
+						<button type="button" onClick="window.game.newGameAsHuman()" class="text-sm md:text-base border border-slate-600 rounded-md px-3 py-2 hover:border-pink-600 focus:border-pink-600 hover:bg-pink-700 focus:bg-pink-700 hover:text-white focus:text-white transition-colors duration-150">
+							New Game
+						</button>
+						<button type="button" onClick="window.game.newGameAsCPU()" class="ml-auto md:ml-0 text-sm md:text-base border border-slate-600 rounded-md px-3 py-2 hover:border-pink-600 focus:border-pink-600 hover:bg-pink-700 focus:bg-pink-700 hover:text-white focus:text-white transition-colors duration-150">
+							New Simulated Game
+						</button>
+					</div>
+
+					<div class="flex flex-col md:grid md:grid-cols-2 gap-3 md:gap-6">
+						<!-- Player 1 -->
+						<div data-game-player-1 class="order-last md:order-first w-full flex flex-col gap-6 bg-slate-900 md:bg-transparent p-3 md:p-6">
+							<div class="flex flex-col md:flex-row gap-3 md:gap-6">
+								<p data-game-player-1-score class="flex flex-row md:flex-col">
+									<span class="font-semibold md:text-lg mr-auto">Player 1 Score:</span>
+									<span data-game-player-1-score-number class="font-bold text-lg">0</span>
+								</p>
+								<div data-game-player-1-choice class="flex flex-row md:flex-col">
+									<p class="flex flex-col mr-auto">
+										<span class="font-semibold md:text-lg mr-auto">Player 1 Choice:</span>
+									<span data-game-player-1-result hidden aria-hidden="true" class="md:w-full flex flex-row flex-wrap gap-3 md:gap-6 col-span-2">
+										<span>Result:</span>
+										<span data-game-player-1-result-text>
+											No results yet...
+										</span>
+									</span>
+									</p>
+									<img data-game-player-1-choice-icon class="invert" alt="No choice" src="/img/icons/empty.png" loading="lazy" width="48" height="48" decoding="async" />
+								</div>
+							</div>
+
+							<div class="pt-6 w-full flex flex-col border-t border-gray-700 md:border-0">
+								<div data-game-player-1-buttons hidden aria-hidden="true" class="w-full flex flex-row flex-wrap gap-3 md:gap-6 col-span-2">
+									<p data-game-player-1-buttons-label class="text-center w-full md:text-left">Which hand will you choose?</p>
+									<div data-game-player-1-buttons-row class="w-full flex flex-row gap-3 md:gap-6 items-center justify-center flex-wrap" role="alert" aria-busy="polite">
+										Loading choices...
+									</div>
+								</div>
+								<div data-game-cpu-buttons hidden aria-hidden="true" class="w-full flex flex-row flex-wrap gap-3 md:gap-6">
+									<p data-game-cpu-buttons-label class="text-center w-full md:text-left">Make computers fight?</p>
+									<div data-game-cpu-buttons-row class="w-full flex flex-row gap-3 md:gap-6 items-center justify-center">
+										<button type="button" onClick="window.game.replayCPUs()" class="border border-slate-600 rounded-md px-3 py-2 hover:border-pink-600 focus:border-pink-600 hover:bg-pink-700 focus:bg-pink-700 hover:text-white focus:text-white transition-colors duration-150">
+											Do it!
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Player 2 -->
+						<div data-game-player-2 class="order-first md:order-last  w-full flex flex-col gap-3 md:gap-6 p-3 md:p-6">
+							<div class="flex flex-col md:flex-row gap-3 md:gap-6">
+								<p data-game-player-2-score class="flex flex-row md:flex-col">
+									<span class="font-semibold md:text-lg mr-auto">Player 2 Score:</span>
+									<span data-game-player-2-score-number class="font-bold text-lg">0</span>
+								</p>
+								<div data-game-player-2-choice class="flex flex-row md:flex-col">
+									<p class="flex flex-col mr-auto">
+										<span class="font-semibold md:text-lg mr-auto">Player 2 Choice:</span>
+									<span data-game-player-2-result hidden aria-hidden="true" class="md:w-full flex flex-row flex-wrap gap-3 md:gap-6 col-span-2">
+										<span>Result:</span>
+										<span data-game-player-2-result-text>
+											No results yet...
+										</span>
+									</span>
+									</p>
+									<img data-game-player-2-choice-icon class="invert" alt="No choice" src="/img/icons/empty.png" loading="lazy" width="48" height="48" decoding="async" />
+								</div>
+							</div>
+
+							<div data-game-player-2-result hidden aria-hidden="true" class="w-full flex flex-row flex-wrap gap-3 md:gap-6 col-span-2">
+								<p>Result:</p>
+								<div data-game-player-2-result-text class="flex flex-row flex-wrap gap-3 md:gap-6 col-span-2">
+									No results yet...
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>
